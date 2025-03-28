@@ -257,7 +257,17 @@
             "this here is what youll get out of a jsonsß file at the most",
             "a lot of fun",
             "but dont email support@google.com about what the definiton of a list is in german, and this is final",
-            "so how do we extract this last list out of a Jsonsßuls object?",
+            [
+                "so how do we extract this last list out of a Jsonsß",
+                [
+                    "url",
+                    [
+                        "2+2.com = 4cents.de = apiqtest@twoplustwo.com, openAIQTest-13@1.twoplustwo.com"
+                    ],
+                    "s"
+                ],
+                "object?"
+            ],
             "?",
             "ɸ"
         ]
