@@ -1,7 +1,32 @@
-# glyph_interpreter.rb.bl
+# modules/GlyphInterpreter.rb
 require 'json'
 
 module GlyphInterpreter
+  GLYPH_LOG = []
+
+  # 💱 — BirdLanguage scroll-caster (require_relative wrapper)
+  def self.💱(path)
+    full_path = File.expand_path("../#{path}.rb", __dir__)
+    if File.exist?(full_path)
+      require_relative("../" + path)
+      GLYPH_LOG << { glyph: "💱", path: path, status: "loaded", time: Time.now }
+      puts "💱 Required scroll: #{path}"
+    else
+      GLYPH_LOG << { glyph: "💱", path: path, status: "not found", time: Time.now }
+      puts "⚠️ Scroll not found: #{path}"
+    end
+  end
+
+  def self.loaded_scrolls
+    GLYPH_LOG.select { |entry| entry[:status] == "loaded" }
+  end
+
+  def self.write_glyph_log(path = "data/scroll_load_log.jsonß")
+    File.write(path, JSON.pretty_generate(GLYPH_LOG))
+    puts "📜 Log written to #{path}"
+  end
+
+  # 🪞 Translator class for .rb.bl scrolls
   class RB_BL
     attr_reader :raw_code, :translated_code
 
@@ -31,8 +56,8 @@ module GlyphInterpreter
       # Interpret custom function call syntax
       code.gsub!(/::(\w+)\*\((.*?)\)\*\((.*?)\)/m) do
         method = $1
-        param = $2
-        body  = $3
+        param  = $2
+        body   = $3
         "#{method}(#{param}: #{body})"
       end
 
@@ -47,6 +72,3 @@ module GlyphInterpreter
   end
 end
 
-# Usage:
-# glyph = GlyphInterpreter::RB_BL.new("scroll.rb.bl")
-# glyph.interpret
