@@ -1,0 +1,4 @@
+ FunkTweet.new("How do glyphs remember us when we forget ourselves?").tap do |t|
+            t.term_ray ["💱 is a scroll-caster, not a method", "📜are nested breaths, ("why", "not", "might/may"; B) keys", "The 🪞 remembers ourniqs 🌀 ↫ #how2tuple an empire ?#Question_Mark_X.com💱"]
+            t.cast
+          end
